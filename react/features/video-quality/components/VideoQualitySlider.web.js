@@ -14,6 +14,7 @@ import { connect } from '../../base/redux';
 import logger from '../logger';
 
 const {
+    SUPER,
     HIGH,
     STANDARD,
     LOW
@@ -94,6 +95,7 @@ class VideoQualitySlider extends Component<Props> {
         // Bind event handlers so they are only bound once for every instance.
         this._enableAudioOnly = this._enableAudioOnly.bind(this);
         this._enableHighDefinition = this._enableHighDefinition.bind(this);
+	this._enableSuperDefinition = this._enableSuperDefinition.bind(this);
         this._enableLowDefinition = this._enableLowDefinition.bind(this);
         this._enableStandardDefinition
             = this._enableStandardDefinition.bind(this);
@@ -128,7 +130,13 @@ class VideoQualitySlider extends Component<Props> {
                 onSelect: this._enableHighDefinition,
                 textKey: 'videoStatus.highDefinition',
                 videoQuality: HIGH
+            },
+            {
+                onSelect: this._enableSuperDefinition,
+                textKey: 'videoStatus.superDefinition',
+                videoQuality: SUPER
             }
+
         ];
     }
 
@@ -289,6 +297,12 @@ class VideoQualitySlider extends Component<Props> {
     }
 
     _enableLowDefinition: () => void;
+
+    _enableSuperDefinition() {
+        sendAnalytics(createEvent('super'));
+        logger.log('Video quality: super high enabled');
+        this._setPreferredVideoQuality(SUPER);
+    }
 
     /**
      * Dispatches an action to receive low quality video from remote

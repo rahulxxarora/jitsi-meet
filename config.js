@@ -110,15 +110,15 @@ var config = {
     // util#browser#usesNewGumFlow. The constraints are independent from
     // this config's resolution value. Defaults to requesting an ideal
     // resolution of 720p.
-    // constraints: {
-    //     video: {
-    //         height: {
-    //             ideal: 720,
-    //             max: 720,
-    //             min: 240
-    //         }
-    //     }
-    // },
+     constraints: {
+         video: {
+             height: {
+                 ideal: 1080,
+                 max: 1080,
+                 min: 360
+             }
+         }
+     },
 
     // Enable / disable simulcast support.
     // disableSimulcast: false,
@@ -164,10 +164,10 @@ var config = {
     // desktopSharingFirefoxDisabled: false,
 
     // Optional desktop sharing frame rate options. Default value: min:5, max:5.
-    // desktopSharingFrameRate: {
-    //     min: 5,
-    //     max: 5
-    // },
+     desktopSharingFrameRate: {
+         min: 30,
+         max: 60
+     },
 
     // Try to start calls with screen-sharing instead of camera video.
     // startScreenSharing: false,
